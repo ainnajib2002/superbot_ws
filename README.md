@@ -22,24 +22,23 @@ The system is divided into modules connected via ROS 2 topics and services:
 
 ---
 
-## 🖼️ System Diagrams (Placeholders)
-## 🖼️ System Diagrams
-
+## 🖼️ System 
 
 ### 🔧 Wheel & Drive System
-![Wheel Design](./wheels.png)
-![Alternative Wheel Design](./wheels2.png)
+![Wheel Design](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/wheels.png)
+![Alternative Wheel Design](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/wheels2.png)
 
 ### 🗺️ SLAM & Mapping
-![SLAM Toolbox](./map.png)
-![RViz Visualization](./rviz.png)
+![SLAM Toolbox](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/map.png)
+![RViz Visualization](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/rviz.png)
 
 ### 🖥️ GUI Interface
-![GUI Interface](./GUI.png)
+![GUI Interface](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/GUI.png)
 
 ### 👀 Human Detection & Gesture
-![YOLOv11 Detection](./humanfollowing.png)
-![Hand Gesture Commands](./coordinatepoint.png)
+![YOLOv11 Detection](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/humanfollowing.png)
+![Hand Gesture Commands](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/coordinatepoint.png)
+
 
 ---
 

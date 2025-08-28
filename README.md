@@ -23,12 +23,16 @@ The system is divided into modules connected via ROS 2 topics and services:
 ---
 
 ## 🖼️ System Diagrams (Placeholders)
+## 🖼️ System Diagrams
 
-- Wheel & drive system → `![Wheel Design](images/wheel.png)`  
-- SLAM mapping process → `![SLAM Toolbox](images/slam.png)`  
-- GUI interface → `![GUI Interface](images/gui.png)`  
-- YOLOv11 with human pose & hand gesture → `![YOLOv11 Detection](images/yolo.png)`  
-- Hand gesture commands (rock/paper/scissors) → `![Hand Gesture](images/gesture.png)`  
+- Wheel & drive system → ![Wheel Design](wheels.png)  
+- Alternative wheel view → ![Wheel Design 2](wheels2.png)  
+- SLAM mapping process → ![SLAM Toolbox](map.png)  
+- RViz visualization → ![RViz](rviz.png)  
+- GUI interface → ![GUI Interface](GUI.png)  
+- YOLOv11 with human pose & hand gesture → ![YOLOv11 Detection](humanfollowing.png)  
+- Hand gesture commands (rock/paper/scissors) → ![Hand Gesture](coordinatepoint.png)  
+
 
 ---
 

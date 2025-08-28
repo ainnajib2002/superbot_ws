@@ -29,15 +29,15 @@ The system is divided into modules connected via ROS 2 topics and services:
 |------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 🗺️ Mapping & SLAM
-| ![SLAM Toolbox](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/map.png) | ![RViz Visualization](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/rviz.png) |
+| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/map.png" width="250"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/rviz.png" width="600"/> |
 |------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 🖥️ GUI Interface
-| ![GUI Interface](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/GUI.png) |
-|---------------------------------------------------------------------------------------------|
+| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/GUI.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/imageanotation.png" width="400"/> |
+|------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 👀 Human Detection & Gesture
-| ![YOLOv11 Detection](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/humanfollowing.png) | ![Hand Gesture Commands](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/coordinatepoint.png) |
+| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/humanfollowing.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/coordinatepoint.png" width="400"/> |
 |-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 

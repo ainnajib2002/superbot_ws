@@ -24,20 +24,21 @@ The system is divided into modules connected via ROS 2 topics and services:
 
 ## 🖼️ System 
 
-### 🔧 Wheel & Drive System
-![Wheel Design](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/wheels.png)
-![Alternative Wheel Design](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/wheels2.png)
+### 🔧 Wheel System
+| ![Wheel Design](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/wheels.png) | ![Alternative Wheel Design](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/wheels2.png) |
+|------------------------------------------------------------|----------------------------------------------------------------|
 
-### 🗺️ SLAM & Mapping
-![SLAM Toolbox](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/map.png)
-![RViz Visualization](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/rviz.png)
+### 🗺️ Mapping & SLAM
+| ![SLAM Toolbox](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/map.png) | ![RViz Visualization](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/rviz.png) |
+|------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 🖥️ GUI Interface
-![GUI Interface](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/GUI.png)
+| ![GUI Interface](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/GUI.png) |
+|---------------------------------------------------------------------------------------------|
 
 ### 👀 Human Detection & Gesture
-![YOLOv11 Detection](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/humanfollowing.png)
-![Hand Gesture Commands](https://raw.githubusercontent.com/ainnajib2002/Supermarket_Robot/main/coordinatepoint.png)
+| ![YOLOv11 Detection](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/humanfollowing.png) | ![Hand Gesture Commands](https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/coordinatepoint.png) |
+|-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 
 ---

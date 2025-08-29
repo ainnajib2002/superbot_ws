@@ -30,7 +30,7 @@ source ./install/setup.bash
 - this will launch pose_estimation node and yolo_follow simultaneously
 
 ```bash
-ros2 launch yolo_launch yolo_foxy.launch.py
+ros2 launch yolo_launch yolo_pose.launch.py
 ```
 
 #### Notes

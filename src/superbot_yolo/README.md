@@ -35,6 +35,7 @@ ros2 launch yolo_launch yolo_foxy.launch.py
 
 #### Notes
 - for **weight** : check in yolo_main/resource, the engine model is for jetson orin nano only, use your yoloV11 own model, or you can use the pytorch model (train4.pt), or you can convert it into your engine model or some else. Then just simply copy your  model path and replace the self.model
+- train4 model include 4 class, which is 0: 'batu' (rock), 1: 'gunting' (scissor), 2: 'kertas' (paper) 3: 'person'
 - In this project, an AprilTag from the tag36h11 family with ID 0 is used
 - In this implementation, I use OpenCV’s VideoCapture instead of subscribing to image_raw from usb_cam, because running it simultaneously with navigation, localization, and RViz introduces a 5–7 second delay.
 - If you still need to share image messages for other tasks, you can use v4l2_camera (or v4l2-ctl for configuration), which provides lower latency.

@@ -16,3 +16,9 @@ yapf
 isort==4.3.21
 imageio
 torchreid
+
+# aprilTag
+pupil-apriltags
+
+# kalmanfilter
+filterpy

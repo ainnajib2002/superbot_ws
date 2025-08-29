@@ -123,46 +123,11 @@ ros2 run supermarket_robot gui_control.py
 
 ---
 
-## 🤖 Robot Architecture
+## 🤖 System Block Diagram
 
-```text
-[ Tkinter GUI ]
-    |
-    |  (publish topic /goal or /category)
-    v
-[ ROS Node → processing ]
-    |
-    v
-[ RViz shows robot position ]
-
-# Differential Drive
-/cmd_vel
-    ↓
-[diff_drive_controller] ←───── Inverse Kinematics
-    ↓            ↓
- left_wheel     right_wheel
-    cmd            cmd
-    ↓            ↓
- SuperbotHardware::write()
-    ↓            ↓
-   Robot moves
-
-    ↑            ↑
-Encoder L     Encoder R
-    ↑            ↑
- SuperbotHardware::read()
-    ↑
-[diff_drive_controller] ←───── Forward Kinematics
-    ↓
-  /odom
-
-# Localization
-[Laser Scan]   --> /scan ---------\
-                                  \
-                                   --> [AMCL] --> /amcl_pose
-[Odometry]    --> /odom ----------/         --> TF: map → odom
-[Static Map]  --> /map
-```
+### 👀 System Block Diagram Robot
+| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/blockdiagram.png" width="400"/> |
+|---------------------------------------------------------------------------------------------------------------|
 
 ---
 

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!-- Basic differential drive mobile base -->
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="superbot_robot">
+  <xacro:arg name="prefix" default="" />
+
+  <xacro:include filename="$(find superbot_hardware)/urdf/superbot_description.urdf.xacro" />
+
+  <!-- Import Rviz colors -->
+  <xacro:include filename="$(find superbot_hardware)/urdf/superbot.materials.xacro" />
+
+  <!-- Import superbot ros2_control description -->
+  <xacro:include filename="$(find superbot_hardware)/ros2_control/superbot.ros2_control.xacro" />
+
+  <xacro:superbot prefix="$(arg prefix)" />
+
+  <xacro:superbot_ros2_control
+    name="superbot" prefix="$(arg prefix)" />
+
+</robot>

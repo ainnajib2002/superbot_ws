@@ -1,0 +1,163 @@
+import tkinter as tk
+from tkinter import ttk, PhotoImage
+import os
+import rclpy
+from rclpy.node import Node
+from std_msgs.msg import String
+from threading import Thread
+
+# Variabel global
+loading_index = 0
+loading_running = False
+kategori_terpilih = ""
+
+# Fungsi untuk menghentikan robot
+def berhenti_robot():
+    global loading_running
+    loading_running = False
+    status_label.config(text="Robot berhenti.")
+
+# Fungsi saat kategori dipilih dari dropdown
+def pilih_kategori(event):
+    global kategori_terpilih
+    kategori_terpilih = combo_kategori.get()
+    if kategori_terpilih:
+        hasil_label.config(text=f"Kategori dipilih: {kategori_terpilih}")
+        tombol_go.config(text=f"GO ke {kategori_terpilih}", command=jalankan_robot)
+        tombol_go.pack(pady=5)
+        status_label.config(text="")
+        berhenti_robot()  # Berhenti jika kategori berubah
+
+# Fungsi animasi titik-titik loading
+def animasi_loading():
+    global loading_index
+    if loading_running:  # hanya lanjut jika loading masih aktif
+        titik = "." * (loading_index % 4)
+        status_label.config(text=f"Menuju rak '{kategori_terpilih}'{titik}")
+        loading_index += 1
+        root.after(500, animasi_loading)
+
+
+# Fungsi saat tombol GO ditekan
+def jalankan_robot():
+    global loading_index, loading_running
+    if loading_running:
+        return  # Cegah animasi berjalan dua kali
+    loading_index = 0
+    loading_running = True
+    animasi_loading()
+    robot_commander.send_robot_command(kategori_terpilih)
+
+# Inisialisasi jendela utama
+root = tk.Tk()
+root.title("Pilih Kategori Produk")
+root.configure(bg="#f0f8ff")
+root.geometry("340x200")
+root.resizable(False, False)
+
+# Tambahkan ikon jika tersedia
+ikon_path = "/home/orin/superbot_ws/src/superbot_core/superbot.png"
+if os.path.exists(ikon_path):
+    try:
+        icon = PhotoImage(file=ikon_path)
+        root.iconphoto(True, icon)
+    except Exception as e:
+        print(f"[!] Gagal memuat ikon: {e}")
+else:
+    print("[!] File ikon 'superbot.png' tidak ditemukan.")
+
+# Label judul
+judul_label = tk.Label(
+    root,
+    text="Pilih Kategori",
+    font=("Helvetica", 12, "bold"),
+    bg="#f0f8ff",
+    fg="#2f4f4f"
+)
+judul_label.pack(pady=(10, 5))
+
+# Label dan Dropdown kategori
+label_kategori = tk.Label(
+    root,
+    text="Kategori:",
+    font=("Arial", 10),
+    bg="#f0f8ff"
+)
+label_kategori.pack()
+
+kategori_list = [
+    "Makanan", "Minuman", "Produk Rumah Tangga",
+    "Kesehatan & Kecantikan", "Snack", "Bahan Dapur",
+    "Perawatan Bayi", "Elektronik"
+]
+
+combo_kategori = ttk.Combobox(root, values=kategori_list, font=("Arial", 10), state="readonly", width=25)
+combo_kategori.pack(pady=2)
+combo_kategori.bind("<<ComboboxSelected>>", pilih_kategori)
+
+# Label hasil pilihan
+hasil_label = tk.Label(
+    root,
+    text="Belum ada kategori dipilih.",
+    font=("Arial", 10),
+    bg="#f0f8ff",
+    fg="#333"
+)
+hasil_label.pack(pady=3)
+
+# Tombol GO (muncul setelah kategori dipilih)
+tombol_go = tk.Button(
+    root,
+    text="GO",
+    font=("Arial", 10, "bold"),
+    bg="#32cd32",
+    fg="white",
+    padx=10,
+    pady=4
+)
+
+# Label status loading
+status_label = tk.Label(
+    root,
+    text="",
+    font=("Arial", 10, "italic"),
+    bg="#f0f8ff",
+    fg="green"
+)
+status_label.pack(pady=3)
+
+# ==== ROS 2 Node ====
+class RobotCommander(Node):
+    def __init__(self):
+        super().__init__('robot_commander')
+        self.publisher_ = self.create_publisher(String, 'robot_command', 10)
+        self.get_logger().info('Robot Commander Node has been started.')
+
+    def send_robot_command(self, kategori):
+        msg = String()
+        msg.data = f"Go to {kategori}"
+        self.publisher_.publish(msg)
+        self.get_logger().info(f"Command sent: {msg.data}")
+    
+    def stop_robot(self):
+        msg = String()
+        msg.data = "Stop"
+        self.publisher_.publish(msg)
+        self.get_logger().info("Command sent: Stop")
+
+# Thread untuk ROS 2
+def ros_thread():
+    rclpy.init()
+    global robot_commander
+    robot_commander = RobotCommander()
+    rclpy.spin(robot_commander)
+
+ros_thread = Thread(target=ros_thread)
+ros_thread.daemon = True
+ros_thread.start()
+
+# Jalankan aplikasi Tkinter
+root.mainloop()
+
+# Shutdown ROS setelah GUI ditutup
+rclpy.shutdown()

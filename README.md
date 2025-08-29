@@ -97,11 +97,11 @@ source install/setup.bash
 ### Run SLAM & Navigation
 ```bash
 # Mapping with SLAM Toolbox
-ros2 launch supermarket_robot slam_toolbox.launch.py
+ros2 launch supermarket_ws slam_toolbox.launch.py
 
 # Localization + Nav2
-ros2 launch supermarket_robot localization.launch.py
-ros2 launch supermarket_robot navigation.launch.py
+ros2 launch supermarket_ws localization.launch.py
+ros2 launch supermarket_ws navigation.launch.py
 ```
 
 ### Run YOLOv11 Inference

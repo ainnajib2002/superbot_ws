@@ -1,0 +1,15 @@
+Makanan:[INFO] [1747283493.597119634] [rviz2]: Setting goal pose: Frame:map, Position(-3.03858, -0.862622, 0), Orientation(0, 0, -0.750868, 0.660452) = Angle: -1.69875
+
+Minuman:[INFO] [1747283567.203508225] [rviz2]: Setting goal pose: Frame:map, Position(0.99505, -1.99781, 0), Orientation(0, 0, -0.709441, 0.704765) = Angle: -1.57741
+
+Produk Rumah Tangga:[INFO] [1747283591.891939971] [rviz2]: Setting goal pose: Frame:map, Position(-3.96126, -3.98628, 0), Orientation(0, 0, -0.680268, 0.732964) = Angle: -1.49626
+
+Kesehatan & Kecantikan:[INFO] [1747283611.474034201] [rviz2]: Setting goal pose: Frame:map, Position(1.01981, -4.06503, 0), Orientation(0, 0, -0.772894, 0.634536) = Angle: -1.76678
+
+Snack:[INFO] [1747283637.140534874] [rviz2]: Setting goal pose: Frame:map, Position(-2.00384, 1.04532, 0), Orientation(0, 0, 0.777005, 0.629494) = Angle: 1.77979
+
+Bahan Dapur:[INFO] [1747283653.419385350] [rviz2]: Setting goal pose: Frame:map, Position(2.02745, -0.960099, 0), Orientation(0, 0, 0.0921411, 0.995746) = Angle: 0.184544
+
+Perawatan Bayi:[INFO] [1747283674.680889049] [rviz2]: Setting goal pose: Frame:map, Position(1.00229, 1.53366, 0), Orientation(0, 0, -0.800424, 0.599434) = Angle: -1.856
+
+Elektronik:[INFO] [1747283696.042237936] [rviz2]: Setting goal pose: Frame:map, Position(-1.00817, -5.4164, 0), Orientation(0, 0, -0.0551012, 0.998481) = Angle: -0.110258

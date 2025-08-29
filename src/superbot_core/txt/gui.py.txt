@@ -1,0 +1,174 @@
+from geometry_msgs.msg import PoseStamped
+from builtin_interfaces.msg import Time
+import tkinter as tk
+from tkinter import ttk, PhotoImage
+import os
+import rclpy
+from rclpy.node import Node
+from threading import Thread
+from std_msgs.msg import String
+from time import time
+
+# -------------------------------
+# Variabel global
+# -------------------------------
+loading_index = 0
+loading_running = False
+kategori_terpilih = ""
+robot_commander = None  # Objek ROS Node
+
+# -------------------------------
+# Dictionary goal pose berdasarkan kategori
+# Format: x, y, orientation_z, orientation_w
+# -------------------------------
+goal_pose_map = {
+    "Makanan": (-3.03858, -0.862622, -0.750868, 0.660452),
+    "Minuman": (0.99505, -1.99781, -0.709441, 0.704765),
+    "Produk Rumah Tangga": (-3.96126, -3.98628, -0.680268, 0.732964),
+    "Kesehatan & Kecantikan": (1.01981, -4.06503, -0.772894, 0.634536),
+    "Snack": (-2.00384, 1.04532, 0.777005, 0.629494),
+    "Bahan Dapur": (2.02745, -0.960099, 0.0921411, 0.995746),
+    "Perawatan Bayi": (1.00229, 1.53366, -0.800424, 0.599434),
+    "Elektronik": (-1.00817, -5.4164, -0.0551012, 0.998481)
+}
+
+# -------------------------------
+# Kelas RobotCommander (ROS2 Node)
+# -------------------------------
+class RobotCommander(Node):
+    def __init__(self):
+        super().__init__('robot_commander')
+        self.publisher_ = self.create_publisher(PoseStamped, '/goal_pose', 10)
+        self.get_logger().info('Robot Commander Node started.')
+
+    def send_goal_pose(self, x, y, z, w):
+        pose = PoseStamped()
+        pose.header.stamp = self.get_clock().now().to_msg()
+        pose.header.frame_id = "map"  # Sesuaikan jika tidak menggunakan frame 'map'
+        pose.pose.position.x = x
+        pose.pose.position.y = y
+        pose.pose.position.z = 0.0
+        pose.pose.orientation.z = z
+        pose.pose.orientation.w = w
+        self.publisher_.publish(pose)
+        self.get_logger().info(f"Sent goal pose to x={x}, y={y}, z={z}, w={w}")
+
+    def stop_robot(self):
+        self.get_logger().info("Stop command requested (not implemented here).")
+
+# -------------------------------
+# Fungsi-fungsi GUI
+# -------------------------------
+def berhenti_robot():
+    global loading_running
+    loading_running = False
+    status_label.config(text="Robot berhenti.")
+    if robot_commander:
+        robot_commander.stop_robot()
+
+def pilih_kategori(event):
+    global kategori_terpilih
+    kategori_terpilih = combo_kategori.get()
+    if kategori_terpilih:
+        hasil_label.config(text=f"Kategori dipilih: {kategori_terpilih}")
+        tombol_go.config(text=f"GO ke {kategori_terpilih}", command=jalankan_robot)
+        tombol_go.pack(pady=5)
+        status_label.config(text="")
+        berhenti_robot()
+
+def animasi_loading():
+    global loading_index
+    if loading_running:
+        titik = "." * (loading_index % 4)
+        status_label.config(text=f"Menuju rak '{kategori_terpilih}'{titik}")
+        loading_index += 1
+        root.after(500, animasi_loading)
+
+def jalankan_robot():
+    global loading_index, loading_running
+    if loading_running:
+        return
+    if kategori_terpilih in goal_pose_map:
+        loading_index = 0
+        loading_running = True
+        animasi_loading()
+        pose = goal_pose_map[kategori_terpilih]
+        if robot_commander:
+            robot_commander.send_goal_pose(*pose)
+    else:
+        status_label.config(text="Kategori tidak valid.")
+
+# -------------------------------
+# Inisialisasi GUI Tkinter
+# -------------------------------
+root = tk.Tk()
+root.title("Pilih Kategori Produk")
+root.configure(bg="#f0f8ff")
+root.geometry("340x200")
+root.resizable(False, False)
+
+# Coba muat ikon jika tersedia
+ikon_path = "/home/orin/superbot_ws/src/superbot_core/superbot.png"
+if os.path.exists(ikon_path):
+    try:
+        icon = PhotoImage(file=ikon_path)
+        root.iconphoto(True, icon)
+    except Exception as e:
+        print(f"[!] Gagal memuat ikon: {e}")
+else:
+    print("[!] File ikon 'superbot.png' tidak ditemukan.")
+
+# Elemen GUI
+judul_label = tk.Label(root, text="Pilih Kategori", font=("Helvetica", 12, "bold"),
+                       bg="#f0f8ff", fg="#2f4f4f")
+judul_label.pack(pady=(10, 5))
+
+label_kategori = tk.Label(root, text="Kategori:", font=("Arial", 10), bg="#f0f8ff")
+label_kategori.pack()
+
+kategori_list = list(goal_pose_map.keys())
+combo_kategori = ttk.Combobox(root, values=kategori_list, font=("Arial", 10),
+                              state="readonly", width=25)
+combo_kategori.pack(pady=2)
+combo_kategori.bind("<<ComboboxSelected>>", pilih_kategori)
+
+hasil_label = tk.Label(root, text="Belum ada kategori dipilih.",
+                       font=("Arial", 10), bg="#f0f8ff", fg="#333")
+hasil_label.pack(pady=3)
+
+tombol_go = tk.Button(root, text="GO", font=("Arial", 10, "bold"),
+                      bg="#32cd32", fg="white", padx=10, pady=4)
+
+status_label = tk.Label(root, text="", font=("Arial", 10, "italic"),
+                        bg="#f0f8ff", fg="green")
+status_label.pack(pady=3)
+
+# -------------------------------
+# Thread ROS 2
+# -------------------------------
+def ros_main():
+    global robot_commander
+    rclpy.init()
+    robot_commander = RobotCommander()
+    try:
+        rclpy.spin(robot_commander)
+    except KeyboardInterrupt:
+        pass
+    finally:
+        robot_commander.destroy_node()
+        rclpy.shutdown()
+
+ros_thread = Thread(target=ros_main, daemon=True)
+ros_thread.start()
+
+# -------------------------------
+# Jalankan GUI
+# -------------------------------
+try:
+    root.mainloop()
+except KeyboardInterrupt:
+    print("[!] Aplikasi dihentikan.")
+
+# Shutdown ROS jika GUI ditutup
+if rclpy.ok():
+    rclpy.shutdown()

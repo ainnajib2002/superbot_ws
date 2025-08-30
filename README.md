@@ -32,11 +32,11 @@ The system is divided into modules connected via ROS 2 topics and services:
 | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/map.png" width="250"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/rviz.png" width="600"/> |
 |------------------------------------------------------------|----------------------------------------------------------------|
 
-### 🖥️ GUI Interface
+### 🖥️ GUI Interface & Gesture
 | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/GUI.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/imageanotation.png" width="400"/> |
 |------------------------------------------------------------|----------------------------------------------------------------|
 
-### 👀 Human Detection & Gesture
+### 👀 Human Detection 
 | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/humanfollowing.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/coordinatepoint.png" width="400"/> |
 |-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 

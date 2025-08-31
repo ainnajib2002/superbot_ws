@@ -29,15 +29,15 @@ The system is divided into modules connected via ROS 2 topics and services:
 |------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 🗺️ Mapping & SLAM
-| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/map.png" width="250"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/rviz.png" width="600"/> |
+| <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/map.png" width="250"/> | <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/rviz.png" width="600"/> |
 |------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 🖥️ GUI Interface & Gesture
-| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/GUI.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/imageanotation.png" width="400"/> |
+| <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/GUI.png" width="400"/> | <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/imageanotation.png" width="400"/> |
 |------------------------------------------------------------|----------------------------------------------------------------|
 
 ### 👀 Human Detection 
-| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/humanfollowing.png" width="400"/> | <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/coordinatepoint.png" width="400"/> |
+| <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/humanfollowing.png" width="400"/> | <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/coordinatepoint.png" width="400"/> |
 |-------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------|
 
 
@@ -88,30 +88,10 @@ The system is divided into modules connected via ROS 2 topics and services:
 rm -rf build/ install/ log/
 
 # Build
-colcon build --packages-select supermarket_ws
+colcon build --packages-select superbot_ws
 
 # Source
 source install/setup.bash
-```
-
-### Run SLAM & Navigation
-```bash
-# Mapping with SLAM Toolbox
-ros2 launch supermarket_ws slam_toolbox.launch.py
-
-# Localization + Nav2
-ros2 launch supermarket_ws localization.launch.py
-ros2 launch supermarket_ws navigation.launch.py
-```
-
-### Run YOLOv11 Inference
-```bash
-ros2 run supermarket_robot yolo_inference.py
-```
-
-### GUI Control
-```bash
-ros2 run supermarket_robot gui_control.py
 ```
 
 ---
@@ -126,7 +106,7 @@ ros2 run supermarket_robot gui_control.py
 ## 🤖 System Block Diagram
 
 ### 👀 System Block Diagram Robot
-| <img src="https://github.com/ainnajib2002/Supermarket_Robot/blob/main/README/blockdiagram.png" width="400"/> |
+| <img src="https://github.com/ainnajib2002/superbot_ws/blob/main/README/blockdiagram.png" width="400"/> |
 |---------------------------------------------------------------------------------------------------------------|
 
 ---
